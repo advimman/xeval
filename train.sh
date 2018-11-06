@@ -1,0 +1,16 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_im_32.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_im_64.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_im.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_im_256.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/tml_config_32.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/tml_config_64.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/tml_config.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/tml_config_256.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_32.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_64.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_256.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_X_32.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_X_64.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_X.json
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 -W ignore evaluate.py configs/decouple_dynamics_X_256.json

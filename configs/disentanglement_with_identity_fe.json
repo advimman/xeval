@@ -1,0 +1,54 @@
+{
+  "feature_extractor_class": "xeval.feature_extractor.extractors.AEFeatureExtractor",
+  "feature_extractor_class_kwargs": {
+    "feature_size": 20,
+    "train_epoch_count": 1,
+    "model_save_path": "/home/elsie/disentanglement_synthetic/models/tmp/ae_model_tmp_path",
+    "optimizer_kwargs": {
+      "lr": 0.1
+    },
+    "loss_kwargs" : {},
+    "use_cuda": true,
+    "data_loader_kwargs": {
+      "batch_size": 2,
+      "shuffle": false,
+      "num_workers": 1
+    },
+    "model_class": "xeval.feature_extractor.models.AlmostIdentityAutoEncoder",
+    "model_kwargs": {
+      "encoder_kwargs": {
+        "features_size": 20
+      },
+      "decoder_kwargs": {
+      }
+    }
+  },
+  "feature_extractor_dataset_class": "xeval.core.dataset.UnsupervisedDataset",
+  "feature_extractor_train_dataset_kwargs": {
+    "data_path": "/home/elsie/disentanglement_synthetic/fe/train",
+    "use_images": false
+  },
+  "feature_extractor_val_dataset_kwargs": {
+    "data_path": "/home/elsie/disentanglement_synthetic/fe/val",
+    "use_images": false
+  },
+  "benchmark_data_root": "/home/elsie/disentanglement_synthetic/bn",
+  "benchmark_tmp_root": "/home/elsie/disentanglement_synthetic/tmp",
+  "extractor_loader_kwargs": {
+    "batch_size": 64,
+    "shuffle": false,
+    "num_workers": 2
+  },
+  "benchmarks_list": [
+      {"train_epochs": 300,
+       "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkQEDR",
+       "model_kwargs": {
+           "model": "xeval.benchmarks.benchmark_models.LassoRegressionModel",
+          "use_cuda": true,
+           "output_size": 10,
+           "alpha": 0
+       },
+       "loader_kwargs": {"batch_size": 64, "shuffle": true,"num_workers": 0}
+      }
+  ]
+}

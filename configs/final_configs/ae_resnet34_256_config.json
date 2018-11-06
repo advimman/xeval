@@ -1,0 +1,124 @@
+{
+  "train_extractor" : true,
+  "dataset_path" : "/Vol1/dbstore/datasets/multimodal/xplane/unvideo_dataset/dataset13_merged/",
+  "feature_extractor_class": "xeval.feature_extractor.extractors.AE2DFeatureExtractor",
+  "feature_extractor_class_kwargs": {
+    "feature_size": 256,
+    "train_epoch_count": 50,
+    "model_save_path": "/Vol0/user/p.solovev/model_features/m_resnet34_ae_256.pth",
+    "optimizer_kwargs": {
+      "lr": 0.005
+    },
+    "loss_kwargs" : {
+      "corr_lambda" : 0.01,
+      "modalities_lambda" : 0.5
+    },
+    "use_cuda": true,
+    "multigpu" : true,
+    "data_loader_kwargs": {
+      "batch_size": 32,
+      "shuffle": true,
+      "num_workers": 14
+    },
+    "model_class": "xeval.feature_extractor.models.Resnet34AutoEncoder",
+    "model_kwargs": {
+        "encoder_kwargs": {
+            "fc_size_list": [],
+            "features_size": 256
+          },
+          "decoder_kwargs": {
+            "cnn_channels_list": [256, 128, 128, 64, 64, 32, 32, 32],
+            "cnn_new_channels_list": [32, 32, 16, 16, 8, 8, 4],
+            "cnn_kernel_size": 3,
+            "cnn_padding": 1,
+            "features_size": 256
+          }
+    }
+  },
+  "feature_extractor_dataset_class": "xeval.core.dataset.UnsupervisedDataset",
+  "feature_extractor_train_dataset_kwargs": {
+    "use_images": true
+  },
+  "feature_extractor_val_dataset_kwargs": {
+    "use_images": true
+  },
+  "benchmark_tmp_root": "/Vol0/user/p.solovev/model_features/resnet34_ae_256",
+  "extractor_loader_kwargs": {
+    "batch_size": 1,
+    "shuffle": false,
+    "num_workers": 8
+  },
+  "use_extracted_features": false,
+  "benchmarks_list": [
+      {
+          "train_epochs": 50,
+          "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkWindRegression",
+          "model_kwargs": {
+              "use_cuda": true,
+              "output_size": 1,
+              "optim_lr": 0.003
+          },
+          "loader_kwargs": {
+              "batch_size": 128,
+              "shuffle": true,
+              "num_workers": 28
+          }
+      },
+      {
+          "train_epochs": 50,
+          "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkTurbulenceRegression",
+          "model_kwargs": {
+              "use_cuda": true,
+              "output_size": 3,
+              "optim_lr": 0.003
+          },
+          "loader_kwargs": {
+              "batch_size": 128,
+              "shuffle": true,
+              "num_workers": 28
+          }
+      },
+      {
+          "train_epochs": 50,
+          "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkLandingRegression",
+          "model_kwargs": {
+              "use_cuda": true,
+              "output_size": 3,
+              "optim_lr": 0.003
+          },
+          "loader_kwargs": {
+              "batch_size": 128,
+              "shuffle": true,
+              "num_workers": 28
+          }
+      },
+      {
+          "train_epochs": 50,
+          "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkAutoRegression",
+          "model_kwargs": {
+              "use_cuda": true,
+              "output_size": 1089,
+              "optim_lr": 0.003
+          },
+          "loader_kwargs": {
+              "batch_size": 128,
+              "shuffle": true,
+              "num_workers": 28
+          }
+      },
+      {
+          "train_epochs": 50,
+          "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkFailuresRegression",
+          "model_kwargs": {
+              "use_cuda": true,
+              "output_size": 12,
+              "optim_lr": 0.003
+          },
+          "loader_kwargs": {
+              "batch_size": 128,
+              "shuffle": true,
+              "num_workers": 28
+          }
+      }
+  ]
+}

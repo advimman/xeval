@@ -1,0 +1,115 @@
+{
+    "train_extractor": true,
+    "dataset_path": "/Vol1/dbstore/datasets/multimodal/xplane/unvideo_dataset/dataset13_merged/",
+    "feature_extractor_class": "xeval.feature_extractor.extractors.TimeSeriesRegressorFeatureExtractor",
+    "feature_extractor_class_kwargs": {
+        "feature_size": 16,
+        "time_distance": 30,
+        "train_epoch_count": 100,
+        "model_save_path": "/tmp/ae_model_tmp_path",
+        "optimizer_kwargs": {
+            "lr": 0.01
+        },
+        "loss_kwargs": {},
+        "use_cuda": true,
+        "data_loader_kwargs": {
+            "batch_size": 1,
+            "shuffle": false,
+            "num_workers": 1
+        },
+        "encoder_class": "xeval.feature_extractor.models.LSTMEncoder",
+        "encoder_kwargs": {
+            "lstm_hidden_size": 16,
+            "lstm_num_layers": 1,
+            "is_lstm_bidirectional": false,
+            "lstm_dropout": 0,
+            "features_size": 16
+        },
+        "model_fc_layers": 1
+    },
+    "feature_extractor_dataset_class": "xeval.core.dataset.UnsupervisedDataset",
+    "feature_extractor_train_dataset_kwargs": {
+        "use_images": false
+    },
+    "feature_extractor_val_dataset_kwargs": {
+        "use_images": false
+    },
+    "benchmark_tmp_root": "/datasets/tmp",
+    "extractor_loader_kwargs": {
+        "batch_size": 64,
+        "shuffle": false,
+        "num_workers": 2
+    },
+    "benchmarks_list": [
+        {
+            "train_epochs": 50,
+            "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkWindRegression",
+            "model_kwargs": {
+                "use_cuda": true,
+                "output_size": 1,
+                "optim_lr": 0.003
+            },
+            "loader_kwargs": {
+                "batch_size": 128,
+                "shuffle": true,
+                "num_workers": 28
+            }
+        },
+        {
+            "train_epochs": 50,
+            "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkTurbulenceRegression",
+            "model_kwargs": {
+                "use_cuda": true,
+                "output_size": 3,
+                "optim_lr": 0.003
+            },
+            "loader_kwargs": {
+                "batch_size": 128,
+                "shuffle": true,
+                "num_workers": 28
+            }
+        },
+        {
+            "train_epochs": 50,
+            "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkLandingRegression",
+            "model_kwargs": {
+                "use_cuda": true,
+                "output_size": 3,
+                "optim_lr": 0.003
+            },
+            "loader_kwargs": {
+                "batch_size": 128,
+                "shuffle": true,
+                "num_workers": 28
+            }
+        },
+        {
+            "train_epochs": 50,
+            "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkAutoRegression",
+            "model_kwargs": {
+                "use_cuda": true,
+                "output_size": 1089,
+                "optim_lr": 0.003
+            },
+            "loader_kwargs": {
+                "batch_size": 128,
+                "shuffle": true,
+                "num_workers": 28
+            }
+        },
+        {
+            "train_epochs": 50,
+            "benchmark_class": "xeval.benchmarks.benchmarks.BenchmarkFailuresRegression",
+            "model_kwargs": {
+                "use_cuda": true,
+                "output_size": 12,
+                "optim_lr": 0.003
+            },
+            "loader_kwargs": {
+                "batch_size": 128,
+                "shuffle": true,
+                "num_workers": 28
+            }
+        }
+    ]
+}
